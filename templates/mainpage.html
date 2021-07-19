@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+</head>
+<body>
+    <div id="title">
+      <p><strong>COMPUTER NETWORKS</strong></p>
+    </div>
+    <div id="exptitle">
+      IPv4 Subnetting
+    </div>
+    <div id="sidebar">
+      <br>
+      <ul>
+        <li class="side active" onclick=change(0)>Aim</li>
+        <li class="side" onclick=change(1)>Theory</li>
+        <li class="side" onclick=change(2)>Pre Test</li>
+        <li class="side" onclick=change(3)>Procedure</li>
+        <li class="side" onclick=change(4)>Simulation</li>
+        <li class="side" onclick=change(5)>Post Test</li>
+        <li class="side" onclick=change(6)>Reference</li>
+      </ul>
+    </div> 
+    <div class="content visible">
+        <h3 class="con-title">Aim<br></h3>
+        <p>1) To determine Class, Number of Subnets, Hosts per Subnet And Subnet Mask<br>
+          2) To determine whether the given IP Address belongs to the same network
+        </p>
+    </div>
+    <div class="content">
+        <h3 class="con-title">Theory<br></h3>
+          <p>IP address is an address having information about how to reach a specific host, 
+            especially outside the LAN. An IP address is a 32 bit unique address having an address space of 2<sup>32</sup> 
+          </p>
+          <p>
+            The 32 bit IP address is divided into five subclasses. <br>These are:
+            <ul>
+              <li>Class A</li>
+              <li>Class B</li>
+              <li>Class C</li>
+              <li>Class D</li>
+              <li>Class E</li>
+            </ul>
+          </p>
+          <p>
+            Each of these classes has a valid range of IP addresses. 
+            Classes D and E are reserved for multicast and experimental purposes respectively. 
+            The order of bits in the first octet determines the classes of IP addresses.
+          </p><br>
+          <img src="{% static 'img/sim/subnet.jpg' %}" alt="subnet" width=550px height=240px/><br>
+          <h3>Subnets</h3>
+          <p>
+            Classless Inter Domain Routing provides the flexibility of borrowing bits of Host part of the 
+            IP address and using them as Network in Network, called Subnet. 
+            By using subnetting, one single Class IP address can be used to have smaller sub-networks which 
+            provides better network management capabilities.
+          </p>
+        
+          <h3><br>Calculating Number of Subnets<br>For Class A (x.x.x.x\n)</h3>
+          <p>
+            In Class A, only the first octet is used as Network identifier and the rest of 
+            three octets are used to be assigned to Hosts (i.e. 16777214 Hosts per Network). 
+            To make more subnets in Class A, bits from the Host part are borrowed and the subnet mask 
+            is changed accordingly.
+          </p><br>
+          <img src="{% static 'img/sim/classASubnet.jpg' %}" alt="subnet" width=700px height=500px/><br>
+          <p><strong>Formula:<br>Number of Subnets = 2<sup>n-8</strong></sup></p>
+          
+          <h3><br>For Class B (x.x.x.x\n)</h3>
+          <p>
+            14 bits are used as Network bits providing (214) 16384 Networks and (216-2) 65534 Hosts. 
+            Class B IP Addresses can be subnetted the same way as Class A addresses, by borrowing bits 
+            from Host bits.Below is given all possible combination of Class B subnetting −
+          </p><br>
+          <img src="{% static 'img/sim/classBSubnet.jpg' %}" alt="subnet" width=750px height=500px/><br>
+          <p><strong>Formula:<br>Number of Subnets = 2<sup>n-16</strong></sup></p>
+
+          <h3><br>For Class C (x.x.x.x\n)</h3>
+          <p>
+            Class C IP addresses are normally assigned to a very small size network because it can only 
+            have 254 hosts in a network. Given below is a list of all possible combination of subnetted Class B IP address
+          </p><br>
+          <img src="{% static 'img/sim/classCSubnet.jpg' %}" alt="subnet" width=450px height=300px/><br>
+          <p><strong>Formula:<br>Number of Subnets = 2<sup>n-16</strong></sup></p>
+          <h3><br>For Class D (x.x.x.x\n)</h3>
+          <p>No subnets available since they are reserved for multicast traffic.</p>
+          <h3><br>For Class E (x.x.x.x\n)</h3>
+          <p>No subnets available since they are addresses which will not work on the public internet.</p>
+
+          <h3><br>Calculating Host per subnet (for IP address of type x.x.x.x/n)</h3>
+          <p><strong>Formula:<br>Number of Host per Subnet = 2<sup>32-n</sup>-2</strong></p><br>
+          <h3>Subnet Mask</h3>
+          <p>
+            A subnet mask is a 32-bit number created by setting host bits to all 0s and
+            setting network bits to all 1s. In this way, the subnet mask separates the IP address into the network and host addresses.
+          </p><br>
+          <h3>Calculating Subnet Mask</h3><br>
+          <img src="{% static 'img/sim/subnetmask.jpg' %}" alt="subnetmass" width=250px height=400px/><br><br>
+
+          <h3>Determining If given IP is in same network</h3>
+          <p><strong>Formula</strong></p>
+          <p style="margin-left:30px">
+            Network ID: floor(Host Address/Subnet Number of Hosts) * Subnet Number of Hosts<br>
+            Broadcast ID: (Host ID + (Subnet Number of Hosts-1))<br>
+            First Host: Network ID + 1<br>
+            Last Host: Broadcast ID - 1<br><br>
+            Network Range is from First Host ID to Last Host ID<br>
+            If given IP is in range it belongs to the same network<br><br>
+          </p>
+          <p><strong>Example</strong><br></p>
+          <p style="margin-left: 30px;">
+            We have IP address: 192.168.20.166/25<br>
+            And have to check if 192.168.20.189 is in the same network<br><br>
+
+            The Host Address = 166<br>
+            Number of Hosts per Subnet = 128<br>
+            Floor(Host Address/Number of Hosts per Subnet) = floor(1.296875) = 1<br><br>
+
+            Network ID: 1*128 = 128         			(192.168.20.128)<br>
+            Broadcast ID: 128+(128-1) = 255 			(192.168.20.255)<br>
+            First Host ID: 128 + 1 = 129    			(192.168.20.129)<br>
+            Last Host ID: 255 - 1 = 254     			(192.168.20.254)<br><br>
+
+            Range is: 192.168.20.129 - 192.168.20.254<br>
+            Since, the given IP address 192.168.20.189 is in the range<br>
+            It belongs to the same network.<br>
+
+          </p>
+          <p>
+            <br><br><br>
+          </p>
+
+    </div> 
+    <div class="content">
+      <h3 class="con-title">Pre Test<br></h3>
+      <b style="font-weight: 400;">1) In the IPv4 addressing format, the number of networks allowed under Class C addresses is</b><br>
+      <input type="radio" name="q1" value="1"> 2<sup>14</sup><br>
+      <input type="radio" name="q1" value="2"> 2<sup>7</sup><br>
+      <input type="radio" name="q1" value="3"> 2<sup>21</sup><br>
+      <input type="radio" name="q1" value="4"> 2<sup>24</sup><br><br>
+
+      <b style="font-weight: 400;">2) The default subnet mask for a class C network can be?</b><br>
+      <input type="radio" name="q2" value="1"> 255.255.0.0<br>
+      <input type="radio" name="q2" value="2"> 255.255.255.0<br>
+      <input type="radio" name="q2" value="3"> 255.255.248.0<br>
+      <input type="radio" name="q2" value="4"> 255.248.255.0<br>
+      <input type="button" value="Evaluate" onclick=check()><br><br>
+      <h3 id="a1"></h3>
+      <h3 id="a2"></h3>
+    </div> 
+    <div class="content">
+        <h3 class="con-title">Procedure<br></h3>
+        <p>
+          <br>
+          1) The aim is <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) To determine Class, Number of Subnets, Hosts per Subnet and Subnet Mask.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) To determine whether the given IP Address belongs to the same network.<br>
+          2) To perform the experiment follow the steps given below.<br>
+          3) An IP address will be given to the user which will be random everytime.<br>
+          4) Carefully observe the given IP address and select the correct class from the dropdown menu.<br>
+          5) Based on the class, answer the questions Number of subnets, Hosts per subnet and Subnet Mask using the correct formulas.<br>
+          6) To choose ‘Yes’ or ‘No’ for the question “Does the IP belong to the same network” using the dropdown menu.<br>
+          7) Click on submit to get an analysis of your answers.<br>
+
+        </p>
+    </div> 
+    <div class="content">
+        <h3 class="con-title">Simulation<br><br></h3>
+      <a href="sim/" style="margin-left: 15px;">Click here for Simulation</a>
+
+    </div> 
+    <div class="content">
+        <h3 class="con-title">Post Test<br></h3>
+        <b style="font-weight: 400;">1) The network address of 172.16.0.0/19 provides how many subnets and hosts?</b><br>
+      <input type="radio" name="q11" value="1"> 7 subnets, 30 hosts each<br>
+      <input type="radio" name="q11" value="2"> 8 subnets, 8,190 hosts each<br>
+      <input type="radio" name="q11" value="3"> 8 subnets, 2046 hosts each<br>
+      <input type="radio" name="q11" value="4"> 7 subnets, 2046 hosts each<br><br>
+
+      <b style="font-weight: 400;">2) If a host on a network has the address 172.16.45.14/30, what is the subnetwork this host belongs to?</b><br>
+      <input type="radio" name="q22" value="1"> 172.16.45.0<br>
+      <input type="radio" name="q22" value="2"> 172.16.45.4<br>
+      <input type="radio" name="q22" value="3"> 172.16.45.8<br>
+      <input type="radio" name="q22" value="4"> 172.16.45.12<br><br>
+
+      <b style="font-weight: 400;">3) To test the IP stack on your local host, which IP address will you ping?</b><br>
+      <input type="radio" name="q33" value="1"> 127.0.0.0<br>
+      <input type="radio" name="q33" value="2"> 127.0.0.1<br>
+      <input type="radio" name="q33" value="3"> 1.0.0.127<br>
+      <input type="radio" name="q33" value="4"> 255.255.255.0<br>
+
+      <b style="font-weight: 400;">4) If a class B network on the Internet has a subnet mask of 255.255.248.0, what is the maximum number of hosts per subnet?</b><br>
+      <input type="radio" name="q44" value="1"> 2047<br>
+      <input type="radio" name="q44" value="2"> 1022<br>
+      <input type="radio" name="q44" value="3"> 2048<br>
+      <input type="radio" name="q44" value="4"> 2046<br><br>
+
+      <input type="button" value="Evaluate" onclick=check1()><br><br>
+      <h3 id="a11"></h3>
+      <h3 id="a22"></h3>
+      <h3 id="a33"></h3>
+      <h3 id="a44"></h3>
+    </div> 
+    <div class="content">
+        <h3 class="con-title">Reference<br></h3>
+        <p>
+         1)<a href= "http://nptel.ac.in/courses/106106091/" target="_blank"> http://nptel.ac.in/courses/106106091/</a><br>
+         2)<a href="http://vlabs.iitb.ac.in/vlabs-dev/labs_local/computer-networks/" target="_blank"> http://vlabs.iitb.ac.in/vlabs-dev/labs_local/computer-networks/</a><br>
+         3)<a href="http://nptel.ac.in/courses/106105081/" target="_blank"> http://nptel.ac.in/courses/106105081/</a>
+
+        </p>
+    </div> 
+<script>
+    function change(x){
+      var side=document.getElementsByClassName("side");
+      var main=document.getElementsByClassName("content");
+      side[x].classList.add("active");
+      main[x].classList.add("visible");
+      for(var i=0;i<side.length;i++)
+      {
+            if(i != x)
+            {
+                  side[i].classList.remove("active");
+                  main[i].classList.remove("visible");
+            }
+      }
+}
+
+function check(){
+  if(document.querySelector('input[name="q1"]:checked').value == 4)
+      document.getElementById("a1").innerHTML = "1) Correct";
+  else
+      document.getElementById("a1").innerHTML =  "1) Wrong";
+  if(document.querySelector('input[name="q2"]:checked').value == 2)
+      document.getElementById("a2").innerHTML = "2) Correct";
+  else
+      document.getElementById("a2").innerHTML =  "2) Wrong";
+          
+}
+
+function check1(){
+  if(document.querySelector('input[name="q11"]:checked').value == 2)
+      document.getElementById("a11").innerHTML = "1) Correct";
+  else
+      document.getElementById("a11").innerHTML =  "1) Wrong";
+  if(document.querySelector('input[name="q22"]:checked').value == 4)
+      document.getElementById("a22").innerHTML = "2) Correct";
+  else
+      document.getElementById("a22").innerHTML =  "2) Wrong";
+  if(document.querySelector('input[name="q33"]:checked').value == 2)
+      document.getElementById("a33").innerHTML = "3) Correct";
+  else
+      document.getElementById("a33").innerHTML =  "3) Wrong";
+
+  if(document.querySelector('input[name="q44"]:checked').value == 4)
+      document.getElementById("a44").innerHTML = "4) Correct";
+  else
+      document.getElementById("a44").innerHTML =  "4) Wrong";
+          
+}
+</script>
+{% endblock content %}

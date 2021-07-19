@@ -1,0 +1,310 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+<html>
+<head>
+	<style>
+		table, th, td {
+  			border: 1px solid black;
+  			border-collapse: collapse;
+		}
+		th, td {
+  			padding: 15px;
+		}
+
+		input[type=text] {
+			width: 10%;
+			padding: 5px 5px;
+			margin: 0px 0;
+			box-sizing: border-box;
+			border: 3px solid green;
+			border-radius: 4px;
+		  }
+
+		input[type=number] {
+			width: 10%;
+			padding: 5px 5px;
+			margin: 0px 0;
+			box-sizing: border-box;
+			border: 3px solid green;
+			border-radius: 4px;
+		  }
+
+		.dropbtn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 16px;
+			font-size: 16px;
+			border: none;
+		  }
+		  
+		  .dropdown {
+			position: relative;
+			display: inline-block;
+		  }
+		  
+		  .dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f1f1f1;
+			min-width: 600px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		  }
+		  
+		  .dropdown-content a {
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+		  }
+		  
+		  .dropdown-content a:hover {background-color: #ddd;}
+		  
+		  .dropdown:hover .dropdown-content {display: block;}
+		  
+		  .dropdown:hover .dropbtn {background-color: #27d447;}
+
+		  #info{
+			background:rgb(183, 245, 37);
+			width:300px;
+			height:160px;
+			top:125px;
+			left:600px;
+			position: absolute;
+			border: 2px solid #73AD21;;
+			border-radius: 25px;
+			/* display: none; */
+			text-align: center;
+			padding-top: 10px;
+			font-size: large;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+		#hint{
+			width:100px;
+			height:10px;
+			top:60px;
+			left:715px;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="dropdown">
+		<button class="dropbtn">Instructions</button>
+		<div class="dropdown-content">
+		  <a href="#home"><b>1) Enter data you want to transmit.</b><br><br>
+								  <b>2) Enter the correct parity for your corresponding input.</b><br><br>
+								  <b>3) Enter the correct Data transmitted(i.e by concatenating input data with parity).</b><br><br>
+								  <b>4) Select No Error Found if you think there will be NO error in transmission or select Error Found if you think there will be error in transmission.</b><br><br>
+								  <b>4) Click "Check" to verify your inputs.</b><br><br>
+								  <b>5) Click "Print" if you want to get print out of Truth Table.</b><br><br>
+								  <b>6) Click on "Reset" button if you want to reset input and outputs.</b><br><br>	                                                        
+								  </a>
+		</div>
+	  </div>
+	<div>
+		<h1 align = "center">Simple Parity Check</h1>
+	</div>
+	<form id="MyForm" method="GET" align="center">
+		<label>Input Data:</label>
+		<input type="number" name="inputdata" id="A" maxlength="8" size="8" > <input type="submit" id="idt" onclick=store()> <br><br>
+		<label>Parity:</label>
+		<input type="text" name="parity" id="B" maxlength="1" size="1">
+		<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data Transmitted:</label>
+		<input type="text" name="datatransmitted" id="C" maxlength="9" size="9"><br><br>
+		<label>Expected Output:</label>
+		<select name="expectedoutput" id="D">
+			<option value="select">Select</option>
+			<option value="No Error Found">No Error Found</option> 
+			<option value="Error Found">Error Found</option>
+		</select>
+		<br><br>
+		<input style=" background: #27d447 !important;height:30px; width:100px" id="button" type="button" value="Check" onclick=AddData()>
+		<button style=" background: #27d447  !important;height:30px; width:100px" type="reset" value="Clear" onclick="clearForm()">Reset</button><br><br>
+	</form>
+	
+	<div id="tblwrap" style="position:absolute; border: 2px solid #3385ff; top:380px;width:520px;height:300px;left:469px">
+		<div style="position:absolute; font-size:16px;background-color: #3385ff;  top:0px;left:0px; width:520px; height:50px;font-weight: bold;"><p style=" color:white"> 
+
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUTH TABLE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input style=" background: #27d447 !important;height:30px; width:100px" id="pr" type="button" value=" Print  " onclick="printDiv('tblwrap')" value="print a div!"></p>
+		</div>
+	   
+		<div id="table" align="center" style="background-color: White;; position:absolute; top:50px;width:520px;height:250px;left:0px; overflow-y: auto;">
+
+			<table id="mytable" width="400" border="1" style="text-align:center" align="center">
+
+				<tbody><tr>
+					<th width="15">Serial No.</th>
+					<th width="25">Input Data</th>
+					<th width="25">Parity</th>
+					<th width="15">Data Transmitted</th>
+					<th width="25">Expected Output</th>
+					<th width="25" id="R">Remarks</th>
+					<!-- <th>load(Watt)</th>-->
+				</tr>
+				
+			</tbody></table>
+			<!-- <table id="mytable" border="1" >
+			</table> -->
+			
+		</div>
+		<h1 id='hint'>Hints</h1>
+    <div id="info">
+        Hover on incorrect cell to get hints
+    </div> 
+</div>
+
+<script>
+
+	var n=1, y="dev";
+
+	function AddData()
+    {
+    var e = document.getElementById("A").value;
+    var f = document.getElementById("B").value;
+    var x = document.getElementById("C").value;
+    var y = document.getElementById("R").value;   
+    var q = document.getElementById("D").value;   
+	
+	var s = document.getElementById("C").value;
+	var g = "1";
+	var i = 0,
+		n = 0,
+		j = 0;
+
+	while (true) {
+		j = s.indexOf(g, j);
+		if (j >= 0) {
+			n++;
+			j++;
+		} else
+			break;
+	}
+var temp = n.toString();
+console.log(temp);
+
+
+
+
+    if (f === "{{actualparity | escapejs}}" && temp === "{{onecountres | escapejs}}" && q === "{{actualoutput | escapejs}}")
+    {
+       y = "Correct";
+    }
+    else
+    {
+     
+      y = "Incorrect";
+	}
+    
+
+
+		var table = document.getElementById("mytable");
+
+
+                    // Create an empty <tr> element and add it to the 1st position of the table:
+                    var row = table.insertRow(-1);
+                    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+		    		var cell6 = row.insertCell(5);
+                    cell1.innerHTML = n++;
+                    cell2.innerHTML = e;
+                    cell3.innerHTML = f;
+                    cell4.innerHTML = x;
+                    cell5.innerHTML = q;
+		            cell6.innerHTML = y;
+
+					if(f === "{{actualparity | escapejs}}")
+        			{
+           				 cell3.style.backgroundColor="rgb(66, 238, 66)";
+       
+        			}
+        			else{
+            		cell3.style.backgroundColor="Red";
+					cell3.onmouseover = function() {
+						document.getElementById('info').innerHTML="The Parity of given input is determined by counting number of 1's in the binary input data, if number of 1's is odd parity will be 1 and if number of 1's is even the parity will be 0"
+						//document.getElementById('info').style.display = 'block';
+					  }
+					cell3.onmouseout = function() {
+						document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+						//document.getElementById('info').style.display = 'none';
+					  }    
+        			}
+
+        			if(temp ==="{{onecountres | escapejs}}")
+        			{
+            			cell4.style.backgroundColor="rgb(66, 238, 66)";
+        			}
+        else{
+            cell4.style.backgroundColor="Red";
+			cell4.onmouseover = function() {
+                document.getElementById('info').innerHTML="Data transmitted is determined by concatinating parity at the end of input data"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell4.onmouseout = function() {
+                document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+                //document.getElementById('info').style.display = 'none';
+              }    
+			
+        }
+
+        
+		/*if(q ==="{{actualoutput | escapejs}}")*/
+		if(q ==="{{actualoutput | escapejs}}" && temp ==="{{onecountres | escapejs}}")
+        {
+            cell5.style.backgroundColor="rgb(66, 238, 66)";
+		}
+		else{
+            cell5.style.backgroundColor="Red";
+			cell5.onmouseover = function() {
+                document.getElementById('info').innerHTML="This is Determined by counting number of 1's in the data transmitted, if number of 1's is odd there will be error found and if number of 1's is even there is no error in data transmitted, for this case number os 1's is: {{onecountres|escapejs}}"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell5.onmouseout = function() {
+                document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+                //document.getElementById('info').style.display = 'none';
+              }    
+        }
+
+		
+                  
+    }
+	
+function clearForm() {
+					document.getElementById("MyForm").reset();          
+		  
+		 } 
+function store(){
+	//var idt = document.getElementById("A").value;
+	//document.getElementById("A").value = idt;
+}
+window.onload = function() {
+	var urlstring= window.location.href;
+	var url = new URL(urlstring);
+	var c = url.searchParams.get("inputdata");
+	document.getElementById("A").value = c
+}
+
+function printDiv(divName) {
+	var printContents = document.getElementById(divName).innerHTML;
+	var originalContents = document.body.innerHTML;
+
+	document.body.innerHTML = printContents;
+
+	window.print();
+
+	document.body.innerHTML = originalContents;
+}
+
+</script>
+
+</body>
+
+
+</html>
+
+{% endblock %}

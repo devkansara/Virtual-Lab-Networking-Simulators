@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="Container">
+    <div id="title">
+        <p id="titletxt"></p>
+    </div>
+    <div id="classdetermination">
+        <div id="enterIptxt">
+            <p>
+                Determine the Class of given IPv4 Address : {{ip}}
+            </p>
+        </div>
+        <div id="enterIpinput">
+             <p>
+                 <input type="text" id="className">
+                 <input class="button" type="button" id="validate" value="Validate" onclick=validate()>
+             </p>
+        </div>
+        <div id="note">
+            <p><strong>Note:</strong>  Enter the Class name in given Format eg. Class A</p>
+        </div>
+   
+    </div>
+    <div id="subnetdetermination">
+         <p> 
+             What are the number of subnets?<br>
+             <input type="text" id="subnet">
+         </p>
+         <p>
+             What are the number of Hosts per Subnet ?<br>
+             <input type="text" id="host">
+         </p>
+         <p>
+             What is the Subnet Mass?<br>
+             <input type="text" id="mask">
+         </p>
+         <input class="button" type="button" id="submit" value="Submit" onclick=submit()>
+
+    </div>
+</div>
+<script>
+function validate()
+{
+    var classname = document.getElementById("className").value;
+    var z=document.getElementById("subnetdetermination");
+    if (classname === "{{class|escapejs}}")
+    {       
+        z.style.display="block";
+    }
+    else {
+        alert("Your Answer is Incorrect,input correct Answer");
+        z.style.display="none";
+    }
+}
+
+function submit()
+{
+    var subnet=document.getElementById("subnet").value;
+    var host=document.getElementById("host").value;
+    var mask=document.getElementById("mask").value;
+    var x=document.getElementById("titletxt");
+    if(subnet ==="{{subnet|escapejs}}" && host ==="{{host|escapejs}}" && mask ==="{{mask|escapejs}}")
+    {
+        x.innerHTML="Sachin";
+    }
+    else{
+        x.innerHTML="Singh";
+    }
+}
+</script>
+{% endblock content %}

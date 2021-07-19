@@ -1,0 +1,197 @@
+#ip{
+    position: absolute;
+    top: 10px;
+    height: 160px;
+    width: 170px;
+    left:750px;
+    background: antiquewhite;
+    border-style: solid;
+    text-align: center;
+}
+#class{
+    position: absolute;
+    top: 250px;
+    height: 80px;
+    width: 150px;
+    left:250px;
+    background-color:antiquewhite;
+    font-size: 20px;
+    text-align: center;
+    border-style: solid;
+}
+#subnet{
+    position: absolute;
+    top: 250px;
+    height: 80px;
+    width: 155px;
+    left:445px;
+    background-color:antiquewhite;
+    font-size: 18px;
+    text-align: center;
+    border-style: solid;
+}
+#host{
+    position: absolute;
+    top: 250px;
+    height: 80px;
+    width: 150px;
+    left:650px;
+    background-color:antiquewhite;
+    font-size: 18px;
+    text-align: center;
+    border-style: solid;
+}
+#mask{
+    position: absolute;
+    top: 250px;
+    height: 80px;
+    width: 150px;
+    left:850px;
+    background-color:antiquewhite;
+    font-size: 18px;
+    text-align: center;
+    border-style: solid;
+}
+#compare{
+    position: absolute;
+    top: 250px;
+    height: 80px;
+    width: 350px;
+    left:1050px;
+    background-color:antiquewhite;
+    font-size: 17px;
+    text-align: center;
+    border-style: solid;
+}
+#table{
+    position: absolute;
+    top: 400px;
+    height: 300px;
+    width: 550px;
+    left:550px;
+    border-style:solid;
+    border-color: #3385ff;
+}
+#truthtable{
+    position: absolute;
+    width: 550px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color:#3385ff;
+}
+#table1{
+    position: absolute;
+    top:50px;
+    width: 550px;
+    height:250px;
+    overflow-y: auto;
+    font-weight: bold;
+    background-color:#EEF;
+}
+#divclass{
+    position: absolute;
+    top: 45px;
+    width:135px;
+    height: 25px;
+    left: 5px;
+    text-align: center;
+}
+#divsubnet{
+    position: absolute;
+    top: 45px;
+    width:135px;
+    height: 25px;
+    left: 5px;
+    text-align: center;
+}
+#divhost{
+    position: absolute;
+    top: 45px;
+    width:130px;
+    height: 25px;
+    left: 5px;
+    text-align: center;
+}
+#divmask{
+    position: absolute;
+    top: 45px;
+    width:130px;
+    height: 25px;
+    left: 5px;
+    text-align: center;
+}
+#divcompare{
+    position: absolute;
+    top: 45px;
+    width:335px;
+    height: 25px;
+    left: 5px;
+    text-align: center;
+}
+#check{
+    position: absolute;
+    top: 350px;
+    left: 710px;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(66, 238, 66);
+    cursor: pointer;
+}
+
+#reset{
+    position: absolute;
+    top: 350px;
+    left:850px;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(66, 238, 66);
+}
+#drpdwnbtn{
+    position: absolute;
+    top: 10px;
+    left:30px;
+    width: 150px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+#myDropdown{
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    display: none;
+    background:lightblue;
+    width: 750px;
+    z-index: 1;
+    color: blue;
+}
+#close{
+    position: absolute;
+    right: 0px;
+    text-align: right;
+}
+#btn{
+    background-color:red;
+    border: none;
+    color: white;
+    /* padding: 12px 16px; */
+    font-size: 15px;
+    cursor: pointer;
+}
+#print{
+    position: absolute;
+    right:40px;
+    top: 10px;
+    width: 100px;
+    height: 35px;
+    background-color: rgb(66, 238, 66);
+}
+@page{
+    size: auto;
+}

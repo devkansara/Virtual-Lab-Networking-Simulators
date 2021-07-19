@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Hello {{name}} !!!</h1>
+<form action="add2" method="POST">
+
+    {% csrf_token %}
+    <p id="num1">Enter 1st Number: <input type="text" name="num1"><br></p>
+    Enter 2st Number: <input type="text" name="num2"><br>
+    <input type="submit">
+</form>
+IP: {{ip}}<br>
+ Class is {{class}}<br>
+No. of subnets: {{subnet}}<br>
+No. of Hosts: {{host}}<br>
+Subnet Mask: {{mask}}<br>
+IP Address: {{ipx}}
+Compare: {{compare}}
+{% endblock content %}

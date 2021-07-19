@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    #info{
+        background:rgb(183, 245, 37);
+        width:300px;
+        height:120px;
+        top:475px;
+        left:1150px;
+        position: absolute;
+        border: 2px solid #73AD21;;
+        border-radius: 25px;
+        /* display: none; */
+        text-align: center;
+        padding-top: 10px;
+        font-size: large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+</style>
+<div id="Container">
+    <input type="button" id="drpdwnbtn" value="INSTRUCTIONS" onclick=dropdown()>
+    <div id="myDropdown" class="dropdown-content show">
+          <a id="close">
+                <!-- <img src="{% static 'img/sim/closeIcon.png' %}" alt="close" width=15px><br> -->
+                <button id="btn" onclick=closes()><i class="fa fa-close"></i></button>
+          </a>
+          <a>  
+                        <br>
+                        <b>1) Carefully observe the given IP address and select the correct class from the dropdown menu </b><br><br>
+                        <b>2) Based on the class, answer the questions Number of subnets, Hosts per subnet and Subnet Mask using the correct formulas</b><br><br>
+                        <b>3) Answer the question “Does the IP belong to the same network” using the dropdown menu</b><br><br>
+                        <b>4) After being satisfied with your answers click on check and get an analysis of your answers</b><br><br>
+          </a>
+    </div>
+
+    <div id="ip">
+        <img src="{% static 'img/sim/computer.jpg' %}" alt="Logo" width=170px/>
+        <strong>IP-Adrress: {{ip}}</strong>
+    </div>
+    <div id="class">
+        <p>
+            <strong>Class</strong><br>
+            <select id="divclass">
+                <option value="">Default</option>
+                <option value="Class A">A</option>
+                <option value="Class B">B</option>
+                <option value="Class C">C</option>
+                <option value="Class D">D</option>
+              </select>
+        </p>
+    </div>
+    <div id="subnet">
+        <p>
+            <strong>Number of Subnets</strong><br>
+            <input type="text" id="divsubnet">
+        </p>
+    </div>
+    <div id="host">
+        <p>
+            <strong>Hosts per Subnet</strong><br>
+            <input type="text" id="divhost">
+        </p>
+    </div>
+    <div id="mask">
+        <p>
+            <strong>Subnet Mask</strong><br>
+            <input type="text" id="divmask">
+        </p>
+    </div>
+    <div id="compare">
+        <p>
+            <strong>Does {{ipx}} belong to same network ?</strong><br>
+            <select id="divcompare">
+                <option value="">Default</option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+              </select>
+        </p>
+    </div>
+    <input type="button" id="check" value="Check" onclick=check()>
+    <input type="button" id="reset" value="Reset" onclick=window.location.reload()>
+    <div id="table">
+        <div id="truthtable">
+           <p style="padding-top: 10px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Truth Table
+           </p>
+           <input type="button" id="print" value="Print" onclick=window.print()>
+        </div>
+        <div id="table1">
+            <table id="mytable" width="550" border="1" style="text-align:center">
+                <tbody>
+                    <tr>
+                        <th width="10">Serial No.</th>
+                        <th width="15">Class</th>
+                        <th width="10">Subnet</th>
+                        <th width="10">Host</th>
+                        <th width="15">Subnet Mask</th>
+                        <th width="10">IP in same network</th>
+                        <th width="10">Remarks</th>
+                  </tr>
+                </tbody>
+            </table>    
+        </div>
+    </div>
+    <h1 id='hint'>Hints</h1>
+    <div id="info">
+        Hover on incorrect cell to get hints
+    </div> 
+</div>
+<script>
+    var n=1;
+    var remark;
+    function check()
+    {
+        var class1 =document.getElementById("divclass").value;
+        var subnet =document.getElementById("divsubnet").value;
+        var host =document.getElementById("divhost").value;
+        var mask =document.getElementById("divmask").value;
+        var compare =document.getElementById("divcompare").value;
+        //var remark =document.getElementById("divclass").value;
+        if(class1 ==="{{class|escapejs}}" && subnet === "{{subnet|escapejs}}" && host === "{{host|escapejs}}" && mask === "{{mask|escapejs}}" && compare ==="{{compare|escapejs}}")
+        {
+            remark="Correct";
+        }
+        else{
+            remark="Incorrect";
+        }
+
+        var table = document.getElementById("mytable");
+        // Create an empty <tr> element and add it to the 1st position of the table:
+        var row = table.insertRow(-1);
+        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
+        cell1.innerHTML = n++;
+        cell2.innerHTML = class1;
+        cell3.innerHTML = subnet;
+        cell4.innerHTML = host;
+        cell5.innerHTML = mask;
+        cell6.innerHTML = compare;
+        cell7.innerHTML = remark;
+        if(class1 ==="{{class|escapejs}}")
+        {
+            cell2.style.backgroundColor="rgb(66, 238, 66)";
+        }
+        else{
+            cell2.style.backgroundColor="Red";
+            cell2.onmouseover = function() {
+                document.getElementById('info').innerHTML="{{classhint|escapejs}}"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell2.onmouseout = function() {
+               // document.getElementById('info').style.display = 'none';
+               document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+              }           
+}
+        
+
+        if(subnet ==="{{subnet|escapejs}}")
+        {
+            cell3.style.backgroundColor="rgb(66, 238, 66)";
+        }
+        else{
+            cell3.style.backgroundColor="Red";
+            cell3.onmouseover = function() {
+                document.getElementById('info').innerHTML="{{subnethint|escapejs}}"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell3.onmouseout = function() {
+                document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+                //document.getElementById('info').style.display = 'none';
+              }    
+        }
+
+        if(host ==="{{host|escapejs}}")
+        {
+            cell4.style.backgroundColor="rgb(66, 238, 66)";
+        }
+        else{
+            cell4.style.backgroundColor="Red";
+            cell4.onmouseover = function() {
+                document.getElementById('info').innerHTML="{{hosthint|escapejs}}"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell4.onmouseout = function() {
+                //document.getElementById('info').style.display = 'none';
+                document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+              }     
+        }
+
+        if(mask ==="{{mask|escapejs}}")
+        {
+            cell5.style.backgroundColor="rgb(66, 238, 66)";
+        }
+        else{
+            cell5.style.backgroundColor="Red";
+            cell5.onmouseover = function() {
+                document.getElementById('info').innerHTML="Incorrect mask"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell5.onmouseout = function() {
+                //document.getElementById('info').style.display = 'none';
+                document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+              }     
+        }
+
+        if(compare ==="{{compare|escapejs}}")
+        {
+            cell6.style.backgroundColor="rgb(66, 238, 66)";
+        }
+        else{
+            cell6.style.backgroundColor="Red";
+            cell6.onmouseover = function() {
+                document.getElementById('info').innerHTML="Incorrect comparision"
+                //document.getElementById('info').style.display = 'block';
+              }
+            cell6.onmouseout = function() {
+                //document.getElementById('info').style.display = 'none';
+                document.getElementById('info').innerHTML="Hover on incorrect cell to get hints"
+              }     
+        }
+        if(remark ==="Correct")
+        {
+            cell7.style.backgroundColor="rgb(66, 238, 66)";
+        }
+        else{
+            cell7.style.backgroundColor="Red";
+        }
+    }
+var d=0
+function dropdown() 
+{
+    if(d === 0)
+    {
+        document.getElementById("myDropdown").style.display="block";
+        d=1;
+    }
+    else{
+        document.getElementById("myDropdown").style.display="none";
+        d=0;
+    }
+}
+function closes()
+{
+    if(d === 1){
+        document.getElementById("myDropdown").style.display="none";
+        d=0;
+    }
+}
+</script>
+{% endblock content %}

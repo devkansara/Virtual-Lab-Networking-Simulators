@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        #title{
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: #f8f8f8;
+            border-color: #e7e7e7;
+        }
+        #title p{
+            margin-left: 100px;
+            padding: 15px;
+            color: black;
+        }
+        #list{
+            position: absolute;
+            left: 100px;
+            top: 150px;
+        }
+        #list h1{
+            font-size: 36px;
+            font-family: Lato;
+            font-weight: 500;
+        }
+        #list ul li{
+            position: relative;
+            font-size: 24px;
+            list-style-type:none;
+            padding: 10px 15px;
+            padding-right: 100px;
+            margin-bottom: -1px;
+            border: 1px solid #999999;
+        }
+        a{
+            text-decoration: none;
+            color: #337cbb;
+        }
+        a:hover{
+            text-decoration: underline;
+            color: #29567e;
+        }
+        #footer{
+            position: absolute;
+            top: 525px;
+            bottom: 0px;
+            width: 100%;
+            background: #337cbb;
+        }
+        #footer p{
+            margin-left: 100px;
+            margin-top: 35px;
+            font-size: 16px;
+            font-weight: 400;
+           /* padding-bottom: 5px;*/
+            color:#FFFFFF;
+            font-family: 'Lato';
+        }
+        #logo{
+            position: absolute;
+            left:1100px;
+            top:60px
+        }
+    </style>
+    <div id="title">
+        <p style="margin-right: 100px;"><img src="{% static 'img/sim/coll.png' %}" alt="Logo" width=100% height=80px/></p>
+    </div>
+    <div id="list">
+        <h1>Computer Networks Lab</h1>
+        <br><br><br><br><br>
+        <ul>
+            <h3>
+                <li class="exp">
+                    <a href="ipv4addressing">IPv4 Subnetting</a>
+                </li>
+                <li class="exp">
+                    <a href="simpleparitycheck">Simple Parity Check</a>
+                </li>
+            </h3>
+        </ul>
+    </div>
+    <div id="footer">
+        <p><span style="font-size: 32px;">GROUP I3, GROUP I27</span><br><br>SHAH AND ANCHOR KUTCHHI ENGINEERING COLLEGE<br>CHEMBUR, MUMBAI 88<br>INDIA</p>
+        <div id="logo">
+            <a href="https://www.facebook.com/shahanchor/" target="_blank"><i class="fa fa-facebook-square" style="color: #FFFFFF; font-size: 50px"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://twitter.com/sakectweets/" target="_blank"><i class="fa fa-twitter" style="color: #FFFFFF; font-size: 50px"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.instagram.com/sakec_chembur/?hl=en/" target="_blank"><i class="fa fa-instagram" style="color: #FFFFFF; font-size: 50px"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.linkedin.com/school/sakec/" target="_blank"><i class="fa fa-linkedin-square" style="color: #FFFFFF; font-size: 50px"></i></a>
+        </div>
+    </div>
+{% endblock %}

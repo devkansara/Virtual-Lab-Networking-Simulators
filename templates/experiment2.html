@@ -1,0 +1,316 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style> 
+        *{
+            padding:0px;
+            margin:0px;
+          }
+          #title{
+            position: absolute;
+            height: 50px;
+            width: 100%;
+            background: #3c8dbc;
+          }
+          #title p{
+            padding: 15px 20px; 
+            font-size: 20px; 
+            color: #ecf0f5;
+            font-family:'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          }
+          #sidebar{
+            top: 50px;
+            position:absolute;
+            width:270px;
+            background: #222d32;
+            height: 200%;
+            bottom: 0px;
+          }
+          #sidebar ul li{
+            padding: 20px 30px;
+            list-style-type:none;
+            cursor:pointer;
+            font-family:'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+          }
+          
+          .side{
+            color: #98b3b3;
+          }
+          
+          .side:hover,.active{
+            background: #1e282c;
+            color: white;
+            border-left: 4px solid #3c8dbc;
+          }
+          #exptitle{
+            position: absolute;
+            top: 50px;
+            left:270px;
+            right:0px;
+            text-align: center;
+            font-size: 30px;
+            font-style: bold;
+            padding-top: 16px;
+            overflow-y: auto;
+            background: #ecf0f5;
+          }
+          .content{
+            position: absolute;
+            display:none;
+            top:100px;
+            left: 270px;
+            height:200%;
+            bottom: 0px ;
+            right:0px;
+            background-color: #ecf0f5;
+          }
+          .visible{
+            display: block;
+          }
+          .center{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+          }
+    </style>
+    <title>Simple Parity Check</title>
+</head>
+<body>
+  <div id="title">
+    <p><strong>COMPUTER NETWORKS</strong></p>
+  </div>
+  <div id="exptitle">
+    Simple Parity Check
+  </div>
+  <div id="sidebar">
+    <br>
+    <ul>
+      <li class="side active" onclick=change(0)>Aim</li>
+      <li class="side" onclick=change(1)>Theory</li>
+      <li class="side" onclick=change(2)>Pre Test</li>
+      <li class="side" onclick=change(3)>Procedure</li>
+      <li class="side" onclick=change(4)>Simulation</li>
+      <li class="side" onclick=change(5)>Post Test</li>
+      <li class="side" onclick=change(6)>Reference</li>
+    </ul>
+  </div> 
+  <div class="content visible">
+    <h2 style="font-size:30px"><br>Aim:</h2> <p style="font-size:26px">To study Simple Parity Check</p>
+
+  </div>
+  <div class="content">
+    <h2>Theory:</h2> <p style="font-size:20px"><b>Error:</b> 
+A condition when the receiver’s information does not match with the sender’s information. During transmission, digital signals suffer from noise that can introduce errors in the binary bits travelling from sender to receiver. That means a 0 bit may change to 1 or a 1 bit may change to 0.<br>
+
+ 
+Error Detecting Codes (Implemented either at Data link layer or Transport Layer of OSI Model):
+Whenever a message is transmitted, it may get scrambled by noise or data may get corrupted. To avoid this, we use error-detecting codes which are additional data added to a given digital message to help us detect if any error has occurred during transmission of the message.<br>
+
+ 
+Basic approach used for error detection is the use of redundancy bits, where additional bits are added to facilitate detection of errors.<br>
+
+Some popular techniques for error detection are:<br>
+1. Simple Parity check<br>
+2. Two-dimensional Parity check<br>
+3. Checksum<br>
+4. Cyclic redundancy check<br><br>
+
+ 
+
+
+
+
+<b>1. Simple Parity check:</b><br>
+A parity check is the process that ensures accurate data transmission between nodes during communication. A parity bit is appended to the original data bits to create an even or odd bit number; the number of bits with value one.
+
+The source then transmits this data via a link, and bits are checked and verified at the destination. Data is considered accurate if the number of bits (even or odd) matches the number transmitted from the source.<br><br>
+Blocks of data from the source are subjected to a check bit or parity bit generator form, where a parity of:<br>
+
+• 1 is added to the block if it contains odd number of 1’s, and<br>
+• 0 is added if it contains even number of 1’s<br><br><br>
+
+<img src="{% static 'images/detect12.jpg' %}" >
+<p>
+
+  </div> 
+  <div class="content">
+<h2>Pre Test:</h2>
+          <p class="MsoNormal" style="text-align:justify;font-size:20px">
+     1)	Simple Parity check bit coding is used for error detection.<br>
+  <input type="radio" name="q1" value="1"> True<br>
+  <input type="radio" name="q1" value="2"> False<br>
+ 
+   <br>  
+   2)	A simple parity-check code can detect __________ errors.<br>
+ <input type="radio" name="q2" value="1">an odd-number of <br>
+  <input type="radio" name="q2" value="2">an even-number of <br>
+  <input type="radio" name="q2" value="3">two <br>
+   <input type="radio" name="q2" value="4">no errors <br>
+  <br>
+   3)	Parity bit coding may not be used for<br>
+   <input type="radio" name="q3" value="1"> Error in more than single bit<br>
+  <input type="radio" name="q3" value="2"> Which bit is in error<br>
+  <input type="radio" name="q3" value="3"> Both a) and b)<br>
+   <input type="radio" name="q3" value="4"> None of the above<br>
+   <br>
+   4)	How many types of parity bits are found?<br>
+   <input type="radio" name="q4" value="1"> 2<br>
+  <input type="radio" name="q4" value="2"> 3<br>
+  <input type="radio" name="q4" value="3"> 4<br>
+   <input type="radio" name="q4" value="4"> 1<br>
+   <br>
+   <input type="button" value="Evaluate" onclick="result()">
+
+
+</p><h3 id="a1"></h3>
+<h3 id="a2"></h3>
+<h3 id="a3"></h3>
+<h3 id="a4"></h3>
+  </div> 
+  <div class="content">
+<br><h2>Procedure</h2>    
+<p style="font-size:20px"><br>• 1 is added to the block if it contains odd number of 1’s, and
+<br>• 0 is added if it contains even number of 1’s
+<br>• then concatenate parity at the end of input data
+<br>• then check the numbers of 1's, if it has even number of 1's then there is no error and if there is odd number of 1's then there is error<p>
+  </div> 
+  <div class="content">
+    <a href="sim/" style="margin-left: 15px;">Click here for Simulation</a>
+
+  </div> 
+  <div class="content">
+<p class="MsoNormal" style="text-align:justify;font-size:20px">
+   1)	How error detection and correction is done ? <br>
+ <input type="radio" name="qn1" value="1"> By passing it through equalizer.<br>
+  <input type="radio" name="qn1" value="2"> By passing it through filter.<br>
+  <input type="radio" name="qn1" value="3"> By amplifying it.<br>
+   <input type="radio" name="qn1" value="4"> By adding redundancy bits.<br>
+  <br>
+   2)	What is a parity bit?<br>
+   <input type="radio" name="qn2" value="1"> An error detection is achieved by adding an extra bit<br>
+  <input type="radio" name="qn2" value="2"> After addition, the carry is found.<br>
+  <input type="radio" name="qn2" value="3"> Bit generated during data transmission.<br>
+  <input type="radio" name="qn2" value="4"> After addition, the total number of bits.<br>
+ 
+   <br>
+
+   3)	Which of the following is true for simple parity check.<br>
+   <input type="radio" name="qn3" value="1"> Simple parity check is expensive mechanism.<br>
+  <input type="radio" name="qn3" value="2"> It can only detect single-bit errors which are very rare.<br>
+  <input type="radio" name="qn3" value="3"> Parity is 1 if number of one's is even.<br>
+  <input type="radio" name="qn3" value="4"> It is a complex mechanism.<br>
+ 
+   <br>
+   4)	Which of the following is true for simple parity check.<br>
+   <input type="radio" name="qn4" value="1"> Simple parity check is expensive mechanism.<br>
+  <input type="radio" name="qn4" value="2"> It is also known as odd parity checking.<br>
+  <input type="radio" name="qn4" value="3"> Parity is 0 if number of one's is odd.<br>
+  <input type="radio" name="qn4" value="4"> If two bits are interchanged, then it cannot detect the errors.<br>
+ 
+   <br>
+
+   <input type="button" value="Evaluate" onclick="result2()">
+
+</p><h3 id="aa1"></h3>
+<h3 id="aa2"></h3>
+<h3 id="aa3"></h3>
+<h3 id="aa4"></h3>
+
+  </div> 
+  <div class="content">
+    [1] V. V. Afanasyev, E. F. Kryuchkov, V. I. Petrov*, I. S. Saldikov, M. Yu. Ternovykh, G. V. Tikhomirov, “Virtual labs on unique experimental equipment”, Russia, 2013.
+<br>[2] Joshua Grodotzki, Tobias R. Ortelt, A. Erman Tekkaya “Remote and Virtual Labs for Engineering Education 4.0”, USA, 2018.
+<br>[3] Krishnashree Achuthan, K. S. Sreelatha, Shone Surendran, Shyam Diwakar, Prema Nedungadi, Steven Humphreys, S. Sreekala C. O., Zeena Pillai, Raghu Raman, Ani Deepthi, Rathish Gangadharan, Saritha Appukuttan, Jyothi Ranganatha, Sreedha Sambhudevan, Suma Mahesh, “The VALUE @ Amrita Virtual Labs Project Using Web Technology to Provide Virtual Laboratory Access to Students”, Kerala, India.
+<br>[4]Nikolaos Batalas , Vassilis-Javed Khan, Panos Markopoulos, “Executable HTML”, Eindhoven, The Netherlands.
+<br>[5]Ms. Minal M. Jaiswal, Prof. Ashish E. Bhande, “REVIEW ON ERROR DETECTION AND CORRECTION”, India.
+<br>[6]Varinder Singh,  Narinder Sharma, “A Review on Various Error Detection and Correction Methods Used in Communication”, India.
+<br>[7]White Paper, “Using Parity to Detect Errors”, February 2005.
+<br>[8] Andrew S Tanenbaum, Computer Networks -, 4th Edition, Pearson Education. 
+<br>[9] Behrouz A. Forouzan, Data Communications and Networking ,4th Edition,Mc Graw Hill education. 
+
+
+  </div> 
+
+<script>
+    function change(x){
+        var side=document.getElementsByClassName("side");
+        var main=document.getElementsByClassName("content");
+        side[x].classList.add("active");
+        main[x].classList.add("visible");
+        for(var i=0;i<side.length;i++)
+        {
+              if(i != x)
+              {
+                    side[i].classList.remove("active");
+                    main[i].classList.remove("visible");
+              }
+        }
+  }
+  
+  function result()
+                 {  
+                     if(document.querySelector('input[name="q1"]:checked').value == 1)
+                     document.getElementById("a1").innerHTML = "1) Correct";
+                     else
+                     document.getElementById("a1").innerHTML =  "1) Wrong";
+                     if(document.querySelector('input[name="q2"]:checked').value == 1)
+                     document.getElementById("a2").innerHTML = "2) Correct";
+                     else
+                     document.getElementById("a2").innerHTML =  "2) Wrong";
+                     if(document.querySelector('input[name="q3"]:checked').value == 3)
+                     document.getElementById("a3").innerHTML = "3) Correct";
+                     else
+                     document.getElementById("a3").innerHTML =  "3) Wrong";
+                     if(document.querySelector('input[name="q4"]:checked').value == 1)
+                     document.getElementById("a4").innerHTML = "4) Correct";
+                     else
+                     document.getElementById("a4").innerHTML =  "4) Wrong";
+                     
+                     
+                 } 
+  
+  
+               
+              function result2()
+                 {  
+                   
+                     if(document.querySelector('input[name="qn1"]:checked').value == 4)
+                     document.getElementById("aa1").innerHTML = "1) Correct";
+                     else
+                     document.getElementById("aa1").innerHTML =  "1) Wrong";
+                     if(document.querySelector('input[name="qn2"]:checked').value == 1)
+                     document.getElementById("aa2").innerHTML = "2) Correct";
+                     else
+                     document.getElementById("aa2").innerHTML =  "2) Wrong";
+                     if(document.querySelector('input[name="qn3"]:checked').value == 2)
+                     document.getElementById("aa3").innerHTML = "3) Correct";
+                     else
+                     document.getElementById("aa3").innerHTML =  "3) Wrong";
+                     if(document.querySelector('input[name="qn4"]:checked').value == 4)
+                     document.getElementById("aa4").innerHTML = "4) Correct";
+                     else
+                     document.getElementById("aa4").innerHTML =  "4) Wrong";
+                     
+                     
+                 } 
+              
+              
+</script>
+</body>
+
+
+</html>
+
+{% endblock %}
