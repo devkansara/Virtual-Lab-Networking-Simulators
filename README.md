@@ -1,6 +1,14 @@
 # Virtual-Lab: Simulators of Networking Concepts
 This Virtual Lab consists simulators for Simple Parity Check, Hamming Code and IPv4 Subnetting which helps students learn networking concepts from the writeups provided and test their knowledges using our simulators
 
+Error detection is a critical process in communication systems, ensuring the integrity of data transmitted from a transmitter to a receiver. To detect errors in transmitted data, redundancy codes, known as error-detecting codes, are utilized. These codes are added to the data during transmission from the source (transmitter).
+
+When a message is transmitted, it may become scrambled by noise or corrupted. To address this, error-detecting codes are incorporated. These codes are additional data appended to a digital message to help identify any errors that may occur during transmission.
+
+Errors can arise when the information received does not match the information sent. During transmission, digital signals can be affected by noise, leading to errors in the binary bits traveling from the sender to the receiver. For instance, a bit with a value of 0 may change to 1, or vice versa.
+
+When data is transmitted from one device to another, there is no inherent guarantee that the data received by the destination device is identical to the data sent by the source device. Error-detecting codes play a vital role in identifying discrepancies and ensuring data integrity in such communication systems.
+
 ## Architechture of this Virtual Labs
 ![image6](https://github.com/devkansara/Virtual-Lab-Networking-Simulators/assets/65404261/1b7d7c7d-d253-4235-ad0c-d937c9c024e2)
 
