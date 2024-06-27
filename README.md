@@ -42,3 +42,7 @@ https://github.com/devkansara/Virtual-Lab-Networking-Simulators/assets/65404261/
 
 ### Correct answer in Hamming code
 <img width="1512" alt="Screenshot 2024-06-26 at 8 49 38 PM" src="https://github.com/devkansara/Virtual-Lab-Networking-Simulators/assets/65404261/9bf16fdf-23cf-41a6-8fc7-b28195e6e466">
+
+## How to run this web application
+In the main project directory run the following command:
+python manage.py runserver
