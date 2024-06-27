@@ -9,6 +9,9 @@ Errors can arise when the information received does not match the information se
 
 When data is transmitted from one device to another, there is no inherent guarantee that the data received by the destination device is identical to the data sent by the source device. Error-detecting codes play a vital role in identifying discrepancies and ensuring data integrity in such communication systems.
 
+## Demo
+https://github.com/devkansara/Virtual-Lab-Networking-Simulators/assets/65404261/dbfa37e7-e41b-49d3-9881-41d258b13845
+
 ## Architechture of this Virtual Labs
 ![image6](https://github.com/devkansara/Virtual-Lab-Networking-Simulators/assets/65404261/1b7d7c7d-d253-4235-ad0c-d937c9c024e2)
 
